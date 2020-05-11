@@ -237,7 +237,7 @@ end
 
 %%
 clc;close all;clear all;
-load robust_data2.mat
+load robust_data.mat
 cost2 = zeros(K,1);
 u_list2 = cell(K,1);
 traj_list2 = cell(K,1);
@@ -258,3 +258,8 @@ xlabel('MPC horizon');
 ylabel('Execution cost');
 set(gca, 'YScale', 'log');
 legend('MPC', 'robust MPC')
+
+
+figure(2); hold on;
+plot(horizon_list,abs(cost-cost2),'+-','linewidth',1.5)
+xlabel('MPC horizon');

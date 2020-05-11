@@ -4,7 +4,7 @@ function [cost,x_traj,u_sig,r_traj]=simulator_run(tstep,Tspan,n,x0,A,B,H,Q,R,vis
 %% Parameters
 N = Tspan/tstep+1;      % step number
 if nargin == 11
-    cont =  @(A,B,x,H,ref, Q,R,options) mpc_cont(A,B,x,H,ref,Q,R,options);
+    cont =  @(A,B,x,H,ref, Q,R,options) mpc_cont(A,B,x,H,ref,Q,R);
     ref_sig = @(t,n,H,tstep) ref_gen(t,n,H,tstep);
     d_sig =  @(t,n,tstep) d_gen(t,n,tstep);
 end
