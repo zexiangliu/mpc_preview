@@ -37,17 +37,13 @@ for i = 1:N-1
     if size(x0,2)>1
         keyboard();
     end
-    try
-        [u_seq] = cont(A,B,x,H,ref,Q,R); 
-    catch
-        keyboard();
-    end
+    
+    % input signal
+    [u_seq] = cont(A,B,x,H,ref,Q,R);
+
     % state update
-    try
-        d = d_sig(t,n,tstep);% disturbance
-    catch
-        keyboard();
-    end
+    d = d_sig(t,n,tstep);% disturbance
+    
     u = u_seq(:,1);
     x = A*x + B*u + d;
     
