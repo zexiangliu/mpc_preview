@@ -3,7 +3,6 @@ function [cost,x_traj,u_sig,r_traj]=simulator_run(tstep,Tspan,n,x0,A,B,H,Q,R,vis
 % Author: Zexiang Liu
 %% Parameters
 N = Tspan/tstep+1;      % step number
-options = mpcqpsolverOptions;
 if nargin == 11
     cont =  @(A,B,x,H,ref, Q,R,options) mpc_cont(A,B,x,H,ref,Q,R,options);
     ref_sig = @(t,n,H,tstep) ref_gen(t,n,H,tstep);
@@ -17,14 +16,14 @@ x = x0;
 u_sig = [];
 t = 0;
 for i = 1:N-1
-    t = t + tstep;
+    t = t + tstep
     % MPC control
     ref = ref_sig(t,n,H,tstep);
     if size(x0,2)>1
         keyboard();
     end
     try
-        [u_seq] = cont(A,B,x,H,ref,Q,R,options); 
+        [u_seq] = cont(A,B,x,H,ref,Q,R); 
     catch
         keyboard();
     end

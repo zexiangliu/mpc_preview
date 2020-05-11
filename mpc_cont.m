@@ -6,6 +6,10 @@ function u_seq = mpc_cont(A,B,x0,H,ref,Q,R,options)
 %         H   --- preview horizon
 %         ref --- reference trajectory, size=[n,H]
 %         Q,R --- running cost x'Qx + u'Ru
+if nargin == 7
+    options = mpcqpsolverOptions;
+end
+
 n = size(A,1);          % state dim
 m = size(B,2);          % input dim
 N = H*(n+m);            % # decision variables
