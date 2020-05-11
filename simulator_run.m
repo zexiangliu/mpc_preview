@@ -1,10 +1,25 @@
 function [cost,x_traj,u_sig,r_traj]=simulator_run(tstep,Tspan,n,x0,A,B,H,Q,R,visual_flag,td, cont,  ref_sig, d_sig)
 % The MPC simulator for integrator dynamics
 % Author: Zexiang Liu
+% Inputs:   tstep --- time step
+%           Tspan --- time span
+%           n     --- dynamics dimension
+%           x0    --- initial condition
+%           A, B  --- define dynamics x+ = Ax + Bu +d
+%           H     --- receding horizon
+%           Q,R   --- define running cost x'Qx + u'Ru
+%           visual_flag --- flag of visualization
+%           td    --- time delay in visualization
+%           cont  --- a function handler cont(A,B,x,H,ref,Q,R), control
+%                     inputs
+%           ref_sig --- a fucnton handler ref_sig(t,n,H,tstep), reference
+%                       signal
+%           d_sig --- a function handler d_sig(t,n,tstep), disturbance
+%                     signal
 %% Parameters
 N = Tspan/tstep+1;      % step number
 if nargin == 11
-    cont =  @(A,B,x,H,ref, Q,R,options) mpc_cont(A,B,x,H,ref,Q,R);
+    cont =  @(A,B,x,H,ref, Q,R) mpc_cont(A,B,x,H,ref,Q,R);
     ref_sig = @(t,n,H,tstep) ref_gen(t,n,H,tstep);
     d_sig =  @(t,n,tstep) d_gen(t,n,tstep);
 end

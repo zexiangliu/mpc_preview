@@ -65,7 +65,7 @@ cont = @(A,B,x,H,ref, Q,R,options) K*x;
 
 %% n = 5, random Q, constant d
 
-% clc;clear all;
+clc;clear all;
 % Parameters
 tstep = 0.1;            % time step
 Tspan = 20;            % time span 
@@ -82,10 +82,8 @@ R = 1;
 % visual profile
 visual_flag = 0;
 td = 50;               % time steps between two displays
-%%
+
 d_siz = 0.1;
-options = mpcqpsolverOptions;
-cont = @(A,B,x,H,ref, Q,R) mpc_cont(A,B,x,H,ref,Q,R,options);
 
 ref_sig = @(t,n,H,tstep) ref_gen(t,n,H,tstep);
 d_sig = @(t,n,tstep) d_siz*ones(n,1);
