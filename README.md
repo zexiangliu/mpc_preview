@@ -5,7 +5,7 @@ To run the code, one need to add the current folder and YALMIP in the search pat
 Some test codes are available in file `exper_tests.m`.
 
 ## Usage
-The main simulation program is  `simulation_run`.
+The main simulation program is  `simulator_run`.
 
 There are three controllers available: MPC, finitie-horizon LQR and robust MPC. In theory, given the same Q, R and H, MPC and LQR should give the same results. One can define a function handler for one of the three controllers as follows. The function handler will be a input of `simulation_run`.
 ``` 
